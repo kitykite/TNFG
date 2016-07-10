@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Root>
+<Header>
+	<scene_version>1</scene_version>
+	<scene_version_string>1.0</scene_version_string>
+</Header>
+<Body>
+	<maps name="init">
+		<scene maps="init" X="1" Y="1" Z="1" serial="scene01">
+			<main_outputs show_all="true">
+				<output>
+					<html>
+						<p><img src="assets/image/0-1-01.jpg" alt="title.jpg" height="150" width="150"/></p>
+						<p>Yet Another Text Adventure</p>
+						<p>A text-based adventure game.</p>
+						<p>Creative Commons auzbuzzard 2016</p>
+						<p>Game Engine ver. indev 0.5.0</p>
+						<p>Story ver. indev 1.0</p>
+						<p>Gameplay inspired by Fenoxo's CoC.</p>
+						<br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
+						<p>This line is here to test scrolling.</p>
+						<vars name="Player.strength" />
+					</html>
+				</output>				
+			</main_outputs>
+			<buttons>
+				<button>
+					<label>New Game</label>
+					<actions>
+						<action type="NextScene">
+							<sceneID maps="char_creation" X="1" Y="1" Z="1" serial="char_creation_backstory_01" />
+						</action>
+					</actions>
+				</button>
+				<button>
+					<label>Load Game</label>
+					<actions>
+					</actions>
+				</button>
+			</buttons>
+			
+		</scene>
+	</maps>
+	<maps name="char_creation">
+		<scene maps="char_creation" X="1" Y="1" Z="1" serial="char_creation_backstory_01">
+			<main_outputs show_all="true">
+				<output>
+					<html>
+						<p>Wind breezes.</p>
+						<p>The air smells of sweet oat.</p>
+						<p>The warm radiance of the sun gently brushes the soft skin of yours.</p>
+						<p>You can feel the warm earth cocooning your body, as you lay on the ground.</p>
+						<p>Your eyes are closed, even as you slowly wake from your slumber.</p>
+						<p>The world is too peaceful for you to wake from its embrace.</p>
+						<p>But you have to. The world awaits you.</p>
+						<p>You gather yourself, and prepare to open your eyes.</p>
+					</html>
+				</output>				
+			</main_outputs>
+			<buttons>
+				<button>
+					<label>Next</label>
+					<actions>
+						<action type="PopUp" waitForPopUp="true">
+							<popup>
+								<output>
+									<html>
+										<p>Your name:</p>
+									</html>
+								</output>
+								<input>
+									<enter_button>OK</enter_button>
+									<action type="ChangeVar">
+										<var name="Player.name" />
+									</action>
+								</input>
+							</popup>
+							<sceneID maps="char_creation" X="2" Y="1" Z="1" serial="char_creation_gender" />
+						</action>
+					</actions>
+				</button>
+			</buttons>
+		</scene>
+		<scene maps="char_creation" X="2" Y="1" Z="1" serial="char_creation_gender">
+			<main_outputs show_all="true">
+				<output>
+					<html>
+						<p>You think hard, squinting your eyes and digging deep inside your brain, searching for the strings of words you call yourself with. N… Th… You try hard catching onto these fleeting words on your train of thought. M… P… They are at the tip of your tongue. G… Am… You mouth, trying to capture these letters and words.</p>
+						<p><vars name="Player.name" /> You mutter. <vars name="Player.name" /> you call. Your name is <vars name="Player.name" />. You grin as you read out these beautiful words that is your name, celebrating the rememberance of your identity.</p>
+						<p>Then you realize something. You quickly lower your head and look back between your legs, staring at your groin behind your pony underside. What are you? You asked yourself, as you try to deduce another important identity of yours.</p>
+						<p>You stared at your crotch, you see yourself as:</p>
+					</html>
+				</output>				
+			</main_outputs>
+			<buttons>
+				<button>
+					<label>Male</label>
+					<actions>
+						<action type="ChangeVar">
+							<vars name="Player.gender" value = "0" />
+						</action>
+						<action type="NextScene">
+							<sceneID maps="char_creation" X="1" Y="1" Z="1" serial="char_creation_backstory_01" />
+						</action>
+					</actions>
+				</button>
+				<button>
+					<label>Female</label>
+					<actions>
+						<action type="ChangeVar">
+							<vars name="Player.gender" value = "1" />
+						</action>
+						<action type="NextScene">
+							<sceneID maps="char_creation" X="1" Y="1" Z="1" serial="char_creation_backstory_01" />
+						</action>
+					</actions>
+				</button>
+			</buttons>
+		</scene>
+	</maps>
+</Body>
+</Root>

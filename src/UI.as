@@ -8,6 +8,7 @@
 	
 	import Interfaces.*;
 	import Objects.*;
+	import Utils.*;
 	
 	
 	public class UI extends MovieClip {
@@ -16,18 +17,19 @@
 		
 		//private var currentShowableBButtons = [];
 		private var currentBButtonPage = 1;
-		private function get buttonNames() { return scene.buttonNames; }
+		private function get buttons() { return scene.buttons; }
 		
 		//--- Class Instances ---//
 		
 		private var game: Game;
-		private var scene: IScene;
+		private var scene: UIScene;
 		
 		public function UI() {
 			//set up stage
 			stage.scaleMode = StageScaleMode.SHOW_ALL;
 			
 			// set up classes
+			UISceneLoader.main.loadXML();
 			
 			this.game = new Game(this);
 			
@@ -62,29 +64,33 @@
 		
 		//--- Output ---//
 		
-		public function updateScene(newScene: IScene) {
+		public function updateScene(newScene: UIScene) {
 			this.scene = newScene;
 			layoutBButtons();
+			layoutMainOutput();
 		}
 		
 		//--- TextField ---//
 		
-		
+		private function layoutMainOutput() {
+			this.outputWindow.scrollBar.scrollTarget = this.outputWindow.outputWindow;
+			this.outputWindow.outputWindow.htmlText = scene.mainOutputText;
+		}
 		
 		//--- bButtons ---//
 		
 		private function layoutBButtons() {
 			hideButtons(Buttons.bB);
 			hideButtons(Buttons.pB);
-			var totalPage = Math.ceil(buttonNames.length / 6);
+			var totalPage = Math.ceil(buttons.length / 6);
 			var currentBButtonCount: int;
-			if (currentBButtonPage == totalPage && buttonNames.length % 6 != 0) {
-				currentBButtonCount = buttonNames.length % 6;
+			if (currentBButtonPage == totalPage && buttons.length % 6 != 0) {
+				currentBButtonCount = buttons.length % 6;
 			} else {
 				currentBButtonCount = 6;
 			}
 			for (var i = 0; i < currentBButtonCount; i++) {
-				setBButtonLabel(Buttons.bB[i], buttonNames[i + (6 * (currentBButtonPage - 1))]);
+				setBButtonLabel(Buttons.bB[i], buttons[i + (6 * (currentBButtonPage - 1))].labels);
 				showBButton(currentBButtonCount);
 			}
 			if (currentBButtonPage < totalPage) {

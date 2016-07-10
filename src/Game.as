@@ -10,11 +10,11 @@
 		
 		var ui: UI;
 		
-		var sceneC: GameSceneC;
+		var sceneC: UISceneC;
 		
 		public function Game(ui: UI) {
 			this.ui = ui;
-			sceneC = new GameSceneC();
+			sceneC = new UISceneC(this);
 			newGame();
 		}
 		
@@ -26,6 +26,12 @@
 		
 		public function onBButtonClicked(buttonIndex: int) {
 			sceneC.updateScene(buttonIndex);
+			updateScene();
+		}
+		
+		//--- Update UI ---//
+		
+		public function updateScene() {
 			ui.updateScene(scene);
 		}
 		
@@ -33,7 +39,7 @@
 		
 		private function newGame() {
 			sceneC.newScene();
-			ui.updateScene(scene);
+			updateScene();
 		}
 
 	}
